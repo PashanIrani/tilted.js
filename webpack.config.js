@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/3dimage.js',
+  entry: './src/tilted.js',
   output: {
-    filename: '3dimage.js',
+    filename: 'tilted.js',
     path: path.resolve(__dirname, 'dist')
   }
 };

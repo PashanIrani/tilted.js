@@ -1,5 +1,5 @@
 {
-  "name": "3dimage",
+  "name": "tilted.js",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PashanIrani/3dImage.js.git"
+    "url": "git+https://github.com/PashanIrani/tilted.js.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PashanIrani/3dImage.js/issues"
+    "url": "https://github.com/PashanIrani/tilted.js/issues"
   },
-  "homepage": "https://github.com/PashanIrani/3dImage.js#readme"
+  "homepage": "https://github.com/PashanIrani/tilted.js#readme"
 }
