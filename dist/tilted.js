@@ -93,6 +93,7 @@ var updateTilt = function(event, el, intensity, disableX, disableY, invert) {
 
 function toDefault(el, callback) {
   var time = 500;
+  console.log('a');
   el.style.transition = 'all ' + time + 'ms';
   el.style.transform = 'perspective(550px) rotateY(0deg)  rotateX(0deg)';
   setTimeout(function() {
@@ -116,9 +117,8 @@ window.tilted = function(tag_id, params) {
     var onHover = params.onHover; //TODO: make onhover be smooth
   }
 
-  /*
   if (onHover) {
-    el.addEventListener('mousemove', function(event) {
+    el.addEventListener('mouseenter', function(event) {
       updateTilt(event, el, intensity, disableX, disableY, invert);
     });
 
@@ -126,11 +126,14 @@ window.tilted = function(tag_id, params) {
       toDefault(el);
     });
   } else {
-  */
-  document.addEventListener('mousemove', function(event) {
-    updateTilt(event, el, intensity, disableX, disableY, invert);
-  }, false);
-  //}
+    document.addEventListener('mousemove', function(event) {
+        updateTilt(event, el, intensity, disableX, disableY, invert);
+      }, false);
+
+    document.addEventListener('mouseleave', function(event) {
+      toDefault(el);
+    }, false);
+  }
 
 };
 
@@ -175,7 +178,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nbody,\nhtml {\n  background-color: #CF4647;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: 40vh auto auto;\n  font-size: 50px;\n  text-align: center;\n  padding: 50px;\n}\n\n#header a {\n  font-family: 'Roboto', sans-serif;\n}\n\n#header a > i {\n  transition: all .2s;\n}\n\n#header a > i:hover {\n  font-size: 60px;\n}\n\na.nostyle {\n  cursor: pointer;\n}\n\na.nostyle:link {\n  text-decoration: inherit;\n  color: inherit;\n}\n\na.nostyle:visited {\n  text-decoration: inherit;\n  color: inherit;\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
+exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nbody,\nhtml {\n  background-color: #CF4647;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: 40vh auto auto;\n  font-size: 50px;\n  text-align: center;\n  padding: 50px;\n  background-color: rgba(255, 255, 255, 0.28);\n}\n\n#header a {\n  font-family: 'Roboto', sans-serif;\n}\n\n#header a > i {\n  transition: all .2s;\n}\n\n#header a > i:hover {\n  font-size: 60px;\n}\n\na.nostyle {\n  cursor: pointer;\n}\n\na.nostyle:link {\n  text-decoration: inherit;\n  color: inherit;\n}\n\na.nostyle:visited {\n  text-decoration: inherit;\n  color: inherit;\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
 
 // exports
 

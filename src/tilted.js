@@ -20,6 +20,7 @@ var updateTilt = function(event, el, intensity, disableX, disableY, invert) {
 
 function toDefault(el, callback) {
   var time = 500;
+  console.log('a');
   el.style.transition = 'all ' + time + 'ms';
   el.style.transform = 'perspective(550px) rotateY(0deg)  rotateX(0deg)';
   setTimeout(function() {
@@ -43,9 +44,8 @@ window.tilted = function(tag_id, params) {
     var onHover = params.onHover; //TODO: make onhover be smooth
   }
 
-  /*
   if (onHover) {
-    el.addEventListener('mousemove', function(event) {
+    el.addEventListener('mouseenter', function(event) {
       updateTilt(event, el, intensity, disableX, disableY, invert);
     });
 
@@ -53,10 +53,13 @@ window.tilted = function(tag_id, params) {
       toDefault(el);
     });
   } else {
-  */
-  document.addEventListener('mousemove', function(event) {
-    updateTilt(event, el, intensity, disableX, disableY, invert);
-  }, false);
-  //}
+    document.addEventListener('mousemove', function(event) {
+        updateTilt(event, el, intensity, disableX, disableY, invert);
+      }, false);
+
+    document.addEventListener('mouseleave', function(event) {
+      toDefault(el);
+    }, false);
+  }
 
 };
