@@ -74,7 +74,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var rotate = function(event, el) {
-  var amount = 20;
+  var amount = 40;
   var x = event.clientX;
   var y = event.clientY;
   var w = window.innerWidth;
@@ -138,7 +138,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nhtml,\nbody {\n  background-color: #CF4647;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: auto;\n  margin-top: 40vh;\n  font-size: 50px;\n  text-align: center;\n  background-color: rgba(0, 0, 0, 0.22);\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
+exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nhtml,\nbody {\n  background-color: #CF4647;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: auto;\n  margin-top: 40vh;\n  font-size: 50px;\n  text-align: center;\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
 
 // exports
 

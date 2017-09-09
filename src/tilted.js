@@ -1,7 +1,7 @@
 import './styles/main.scss';
 
 var rotate = function(event, el) {
-  var amount = 20;
+  var amount = 40;
   var x = event.clientX;
   var y = event.clientY;
   var w = window.innerWidth;
