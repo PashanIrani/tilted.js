@@ -74,20 +74,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var rotate = function(event, el) {
-  var amount = 40;
+  var amount = 20;
   var x = event.clientX;
   var y = event.clientY;
   var w = window.innerWidth;
   var h = window.innerHeight;
-  var midpoint = w / 2;
+  var midpointX = w / 2;
   var midpointY = h / 2;
-  var pos = x - midpoint;
+  var posX = x - midpointX;
   var posY = y - midpointY;
 
-  var val = (pos / midpoint) * amount;
+  var valX = (posX / midpointX) * amount;
   var valY = (posY / midpointY) * -amount;
 
-  el.style.transform = 'perspective(550px) rotateY(' + val + 'deg) rotateX(' + valY + 'deg)';
+  el.style.transform = 'perspective(550px) rotateY(' + valX + 'deg) rotateX(' + valY + 'deg)';
 };
 
 window.tilted = function(tag_id, params) {
