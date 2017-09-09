@@ -1,0 +1,26 @@
+$bgColor: #CF4647;
+@font-face {
+    font-family: mainLogoFont;
+    src: url('../fonts/Luna.ttf');
+}
+
+html,body {
+  background-color: $bgColor;
+}
+
+#header {
+  width: 50vw;
+    font-family: mainLogoFont;
+    margin: auto;
+    margin-top: 40vh;
+    font-size: 50px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.22);
+
+}
+
+.spacer{
+  background-color: blue;
+  opacity: 0.2;
+  height: 100px;
+}
