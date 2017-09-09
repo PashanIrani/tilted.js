@@ -1,25 +1,51 @@
 $bgColor: #CF4647;
+@import url( 'https://fonts.googleapis.com/css?family=Roboto');
 @font-face {
-    font-family: mainLogoFont;
-    src: url('../fonts/Luna.ttf');
+  font-family: mainLogoFont;
+  src: url('../fonts/Luna.ttf');
 }
 
-html,body {
+body,
+html {
   background-color: $bgColor;
 }
 
 #header {
   width: 50vw;
-    font-family: mainLogoFont;
-    margin: auto;
-    margin-top: 40vh;
-    font-size: 50px;
-    text-align: center;
-    // background-color: rgba(0, 0, 0, 0.22); 
+  font-family: mainLogoFont;
+  margin: 40vh auto auto;
+  font-size: 50px;
+  text-align: center;
+  // background-color: rgba(0, 0, 0, 0.22);
+  a {
+    font-family: 'Roboto', sans-serif;
 
+
+  & > i {
+    transition: all .2s;
+
+    &:hover {
+      font-size: 60px;
+    }
+  }
+}
 }
 
-.spacer{
+a.nostyle {
+  cursor: pointer;
+
+  &:link {
+    text-decoration: inherit;
+    color: inherit;
+  }
+
+  &:visited {
+    text-decoration: inherit;
+    color: inherit;
+  }
+}
+
+.spacer {
   background-color: blue;
   opacity: 0.2;
   height: 100px;
