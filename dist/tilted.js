@@ -73,8 +73,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_main_scss__);
 
 
-var rotate = function(event, el) {
-  var amount = 20;
+var updateTilt = function(event, el, intensity, disableX, disableY, invert) {
+  var amount = invert ? intensity * -1 : intensity;
   var x = event.clientX;
   var y = event.clientY;
   var w = window.innerWidth;
@@ -84,17 +84,54 @@ var rotate = function(event, el) {
   var posX = x - midpointX;
   var posY = y - midpointY;
 
-  var valX = (posX / midpointX) * amount;
-  var valY = (posY / midpointY) * -amount;
+  //Tilt
+  var valX = disableX ? 0 : (posX / midpointX) * amount;
+  var valY = disableY ? 0 : (posY / midpointY) * -amount;
 
   el.style.transform = 'perspective(550px) rotateY(' + valX + 'deg) rotateX(' + valY + 'deg)';
 };
 
+function toDefault(el, callback) {
+  var time = 500;
+  el.style.transition = 'all ' + time + 'ms';
+  el.style.transform = 'perspective(550px) rotateY(0deg)  rotateX(0deg)';
+  setTimeout(function() {
+    el.style.transition = '';
+  }, time);
+
+  if (callback) {
+    callback();
+  }
+}
+
 window.tilted = function(tag_id, params) {
+
   var el = document.getElementById(tag_id);
+
+  if (params) {
+    var intensity = params.intensity;
+    var disableX = params.disableX;
+    var disableY = params.disableY;
+    var invert = params.invert;
+    var onHover = params.onHover; //TODO: make onhover be smooth
+  }
+
+  /*
+  if (onHover) {
+    el.addEventListener('mousemove', function(event) {
+      updateTilt(event, el, intensity, disableX, disableY, invert);
+    });
+
+    el.addEventListener('mouseleave', function() {
+      toDefault(el);
+    });
+  } else {
+  */
   document.addEventListener('mousemove', function(event) {
-    rotate(event, el);
+    updateTilt(event, el, intensity, disableX, disableY, invert);
   }, false);
+  //}
+
 };
 
 
@@ -138,7 +175,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nbody,\nhtml {\n  background-color: #CF4647;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: 40vh auto auto;\n  font-size: 50px;\n  text-align: center;\n}\n\n#header a {\n  font-family: 'Roboto', sans-serif;\n}\n\n#header a > i {\n  transition: all .2s;\n}\n\n#header a > i:hover {\n  font-size: 60px;\n}\n\na.nostyle {\n  cursor: pointer;\n}\n\na.nostyle:link {\n  text-decoration: inherit;\n  color: inherit;\n}\n\na.nostyle:visited {\n  text-decoration: inherit;\n  color: inherit;\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
+exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nbody,\nhtml {\n  background-color: #CF4647;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: 40vh auto auto;\n  font-size: 50px;\n  text-align: center;\n  background-color: rgba(0, 0, 0, 0.22);\n  padding: 50px;\n}\n\n#header a {\n  font-family: 'Roboto', sans-serif;\n}\n\n#header a > i {\n  transition: all .2s;\n}\n\n#header a > i:hover {\n  font-size: 60px;\n}\n\na.nostyle {\n  cursor: pointer;\n}\n\na.nostyle:link {\n  text-decoration: inherit;\n  color: inherit;\n}\n\na.nostyle:visited {\n  text-decoration: inherit;\n  color: inherit;\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
 
 // exports
 
