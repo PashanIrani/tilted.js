@@ -73,7 +73,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_main_scss__);
 
 
-var updateTilt = function(event, el, intensity, disableX, disableY, invert) {
+var calcTilt = function(event, el, intensity, disableX, disableY, invert) {
   var amount = invert ? intensity * -1 : intensity;
   var x = event.clientX;
   var y = event.clientY;
@@ -85,16 +85,21 @@ var updateTilt = function(event, el, intensity, disableX, disableY, invert) {
   var posY = y - midpointY;
 
   //Tilt
-  var valX = disableX ? 0 : (posX / midpointX) * amount;
-  var valY = disableY ? 0 : (posY / midpointY) * -amount;
+  var valX = disableY ? 0 : (posY / midpointY) * -amount;
+  var valY = disableX ? 0 : (posX / midpointX) * amount;
 
-  el.style.transform = 'perspective(550px) rotateY(' + valX + 'deg) rotateX(' + valY + 'deg)';
+  //el.style.transform = 'perspective(550px) rotateY(' + valX + 'deg) rotateX(' + valY + 'deg)';
+  return {
+    x: valX,
+    y: valY
+  };
 };
 
-function toDefault(el, callback) {
-  var time = 500;
-  el.style.transition = 'all ' + time + 'ms';
-  el.style.transform = 'perspective(550px) rotateY(0deg)  rotateX(0deg)';
+function rotate(el, x, y, callback, time) {
+  console.log(time);
+  time = time ? time : 500;
+  el.style.transition = time + 'ms';
+  el.style.transform = 'perspective(550px) rotateX(' + x + 'deg) rotateY(' + y + 'deg)  ';
   setTimeout(function() {
     el.style.transition = '';
   }, time);
@@ -102,6 +107,10 @@ function toDefault(el, callback) {
   if (callback) {
     callback();
   }
+}
+
+function tilt(el, x, y) {
+  el.style.transform = 'perspective(550px) rotateX(' + x + 'deg) rotateY(' + y + 'deg)  ';
 }
 
 window.tilted = function(tag_id, params) {
@@ -116,21 +125,35 @@ window.tilted = function(tag_id, params) {
     var onHover = params.onHover; //TODO: make onhover be smooth
   }
 
-  /*
   if (onHover) {
-    el.addEventListener('mousemove', function(event) {
-      updateTilt(event, el, intensity, disableX, disableY, invert);
+    el.addEventListener('mouseenter', function(event) {
+      var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+      rotate(el, degs.x, degs.y, function() {
+        el.addEventListener('mousemove', function(event) {
+          var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+          tilt(el, degs.x, degs.y);
+        }, false);
+      }, 100);
     });
 
     el.addEventListener('mouseleave', function() {
-      toDefault(el);
-    });
+        el.removeEventListener('mousemove', function(event) {
+          var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+          tilt(el, degs.x, degs.y);
+        }, false);
+        rotate(el, 0, 0);
+      });
+
   } else {
-  */
-  document.addEventListener('mousemove', function(event) {
-    updateTilt(event, el, intensity, disableX, disableY, invert);
-  }, false);
-  //}
+    document.addEventListener('mousemove', function(event) {
+      var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+      tilt(el, degs.x, degs.y);
+    }, false);
+
+    document.addEventListener('mouseleave', function(event) {
+      rotate(el, 0, 0);
+    }, false);
+  }
 
 };
 
@@ -175,7 +198,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nbody,\nhtml {\n  background-color: #CF4647;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: 40vh auto auto;\n  font-size: 50px;\n  text-align: center;\n  padding: 50px;\n}\n\n#header a {\n  font-family: 'Roboto', sans-serif;\n}\n\n#header a > i {\n  transition: all .2s;\n}\n\n#header a > i:hover {\n  font-size: 60px;\n}\n\na.nostyle {\n  cursor: pointer;\n}\n\na.nostyle:link {\n  text-decoration: inherit;\n  color: inherit;\n}\n\na.nostyle:visited {\n  text-decoration: inherit;\n  color: inherit;\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
+exports.push([module.i, "@font-face {\n  font-family: mainLogoFont;\n  src: url(" + __webpack_require__(4) + ");\n}\n\nbody,\nhtml {\n  background-color: #d45a5b;\n}\n\n#header {\n  width: 50vw;\n  font-family: mainLogoFont;\n  margin: 40vh auto auto;\n  font-size: 50px;\n  text-align: center;\n  padding: 50px;\n  background-color: rgba(255, 255, 255, 0.28);\n}\n\n#header a {\n  font-family: 'Roboto', sans-serif;\n}\n\n#header a > i {\n  transition: all .2s;\n}\n\n#header a > i:hover {\n  font-size: 60px;\n}\n\na.nostyle {\n  cursor: pointer;\n}\n\na.nostyle:link {\n  text-decoration: inherit;\n  color: inherit;\n}\n\na.nostyle:visited {\n  text-decoration: inherit;\n  color: inherit;\n}\n\n.spacer {\n  background-color: blue;\n  opacity: 0.2;\n  height: 100px;\n}", ""]);
 
 // exports
 

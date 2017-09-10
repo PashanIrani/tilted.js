@@ -1,6 +1,6 @@
 import './styles/main.scss';
 
-var updateTilt = function(event, el, intensity, disableX, disableY, invert) {
+var calcTilt = function(event, el, intensity, disableX, disableY, invert) {
   var amount = invert ? intensity * -1 : intensity;
   var x = event.clientX;
   var y = event.clientY;
@@ -12,16 +12,21 @@ var updateTilt = function(event, el, intensity, disableX, disableY, invert) {
   var posY = y - midpointY;
 
   //Tilt
-  var valX = disableX ? 0 : (posX / midpointX) * amount;
-  var valY = disableY ? 0 : (posY / midpointY) * -amount;
+  var valX = disableY ? 0 : (posY / midpointY) * -amount;
+  var valY = disableX ? 0 : (posX / midpointX) * amount;
 
-  el.style.transform = 'perspective(550px) rotateY(' + valX + 'deg) rotateX(' + valY + 'deg)';
+  //el.style.transform = 'perspective(550px) rotateY(' + valX + 'deg) rotateX(' + valY + 'deg)';
+  return {
+    x: valX,
+    y: valY
+  };
 };
 
-function toDefault(el, callback) {
-  var time = 500;
-  el.style.transition = 'all ' + time + 'ms';
-  el.style.transform = 'perspective(550px) rotateY(0deg)  rotateX(0deg)';
+function rotate(el, x, y, callback, time) {
+  console.log(time);
+  time = time ? time : 500;
+  el.style.transition = time + 'ms';
+  el.style.transform = 'perspective(550px) rotateX(' + x + 'deg) rotateY(' + y + 'deg)  ';
   setTimeout(function() {
     el.style.transition = '';
   }, time);
@@ -29,6 +34,10 @@ function toDefault(el, callback) {
   if (callback) {
     callback();
   }
+}
+
+function tilt(el, x, y) {
+  el.style.transform = 'perspective(550px) rotateX(' + x + 'deg) rotateY(' + y + 'deg)  ';
 }
 
 window.tilted = function(tag_id, params) {
@@ -43,20 +52,34 @@ window.tilted = function(tag_id, params) {
     var onHover = params.onHover; //TODO: make onhover be smooth
   }
 
-  /*
   if (onHover) {
-    el.addEventListener('mousemove', function(event) {
-      updateTilt(event, el, intensity, disableX, disableY, invert);
+    el.addEventListener('mouseenter', function(event) {
+      var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+      rotate(el, degs.x, degs.y, function() {
+        el.addEventListener('mousemove', function(event) {
+          var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+          tilt(el, degs.x, degs.y);
+        }, false);
+      }, 100);
     });
 
     el.addEventListener('mouseleave', function() {
-      toDefault(el);
-    });
+        el.removeEventListener('mousemove', function(event) {
+          var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+          tilt(el, degs.x, degs.y);
+        }, false);
+        rotate(el, 0, 0);
+      });
+
   } else {
-  */
-  document.addEventListener('mousemove', function(event) {
-    updateTilt(event, el, intensity, disableX, disableY, invert);
-  }, false);
-  //}
+    document.addEventListener('mousemove', function(event) {
+      var degs = calcTilt(event, el, intensity, disableX, disableY, invert);
+      tilt(el, degs.x, degs.y);
+    }, false);
+
+    document.addEventListener('mouseleave', function(event) {
+      rotate(el, 0, 0);
+    }, false);
+  }
 
 };
