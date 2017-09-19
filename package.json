@@ -17,7 +17,7 @@
     "webpack-merge": "^4.1.0"
   },
   "scripts": {
-    "start": "webpack --config webpack.common.js",
+    "start": "webpack --config webpack.config.js",
     "build": "webpack --config webpack.prod.js"
   },
   "repository": {
