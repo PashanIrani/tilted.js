@@ -1,11 +1,12 @@
 var calcTilt = function(event, el, intensity, disableX, disableY, invert) {
   var amount = invert ? intensity * -1 : intensity;
-  var x = event.clientX;
-  var y = event.clientY;
-  var w = window.innerWidth;
-  var h = window.innerHeight;
+  var x = (el == document) ? event.clientX : event.clientX - el.getBoundingClientRect().left;
+  var y = (el == document) ? event.clientY : event.clientY - el.getBoundingClientRect().top;
+  w = (el == document) ? window.innerWidth : el.getBoundingClientRect().width;
+  h = (el == document) ? window.innerHeight : el.getBoundingClientRect().height;
   var midpointX = w / 2;
   var midpointY = h / 2;
+
   var posX = x - midpointX;
   var posY = y - midpointY;
 
@@ -66,9 +67,10 @@ window.tilted = function(tag_id, params) {
     onHover = params.onHover ? params.onHover : onHover;
   }
 
+  console.log(intensity);
   // determines what to place events on
   var obj = onHover ? el : document;
-
+  console.log(obj);
   //adding listener :P
   obj.addEventListener('mouseenter', start);
   obj.addEventListener('mouseleave', leave);
