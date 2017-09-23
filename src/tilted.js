@@ -23,7 +23,6 @@ var calcTilt = function(event, el, intensity, disableX, disableY, invert) {
 };
 
 function rotate(el, x, y, time, callback) {
-
   if (el == document) return;
   time = time ? time : 500;
   el.style.transition = time + 'ms';
@@ -66,7 +65,7 @@ window.tilted = function(tag_id, params) {
       state = 1;
       console.log(state);
       //rotate to deg on enter then follow
-      rotate(el, degs.x, degs.y, 100, function() {
+      rotate(el, degs.x, degs.y, 75, function() {
         state = 2;
         console.log(state);
       });
@@ -74,15 +73,20 @@ window.tilted = function(tag_id, params) {
   }
 
   function follow(event) {
-    var degs = calcTilt(event, obj, intensity, disableX, disableY, invert);
-    tilt(el, degs.x, degs.y);
+    if (state == 2) {
+      var degs = calcTilt(event, obj, intensity, disableX, disableY, invert);
+      tilt(el, degs.x, degs.y);
+    }
   }
 
   function leave() {
-    state = 1;
-    rotate(el, 0, 0, 500, function() {
-      state = 0;
+    if (state == 2) {
+      state = 1;
       console.log(state);
-    });
+      rotate(el, 0, 0, 200, function() {
+        state = 0;
+        console.log('left: ' + state);
+      });
+    }
   }
 };
