@@ -1,5 +1,3 @@
-import './styles/main.scss';
-
 var calcTilt = function(event, el, intensity, disableX, disableY, invert) {
   var amount = invert ? intensity * -1 : intensity;
   var x = event.clientX;

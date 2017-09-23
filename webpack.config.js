@@ -1,9 +1,12 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/tilted.js',
+  entry: {
+    tilted: './src/tilted.js',
+    main: './demo/main.js'
+  },
   output: {
-    filename: 'tilted.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   watch: true,
