@@ -21,6 +21,7 @@ html {
   padding: 50px;
   background-color: rgba(255, 255, 255, 0.28);
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
   a {
     font-family: 'Roboto', sans-serif;
 
@@ -34,17 +35,18 @@ html {
   }
 }
 
-#footer{
+#footer {
   text-align: center;
   background-color: #212121;
   width: 100vw;
   left: 0;
-  padding: 100px 0px;
+  padding: 100px 0;
 
-  #fork{
+  #fork {
     font-size: 35px;
   }
 }
+
 a.nostyle {
   cursor: pointer;
 
@@ -76,42 +78,49 @@ a.nostyle {
   color: #212121;
 }
 
-.prop-noBack{
+.prop-noBack {
   @extend .prop;
   color: #4a4949;
   background-color: transparent;
 }
 
-#properties{
-  background-color:#e8e8e8;
+#properties {
+  background-color: #e8e8e8;
   width: 100vw;
-  padding: 50px 0px 100px 0px;
+  padding: 50px 0 100px;
   color: #212121;
+  margin-top: 50px;
 }
-#desc{
+
+#desc {
   padding-top: 100px;
+  text-align: center;
 }
 
 #splash {
   height: 100vh;
   text-align: center;
   padding-bottom: 50px;
+
   .fa-chevron-circle-down {
     font-size: 25px;
   }
 }
 
-.centerView{
-    display: flex;
-    width: 100%;
-    height: 80vh;
+.centerView {
+  display: flex;
+  width: 100%;
+  height: 80vh;
 }
 
-h1, h2, h3{
+h1,
+h2,
+h3,
+p {
   text-align: center;
 }
 
-h1{
+h1 {
   margin-top: 100px;
   font-size: 35px;
 }
@@ -120,22 +129,41 @@ h2 {
   margin-top: 75px;
 }
 
-h3{
-  margin: 50px 0px;
-}
-hr {
-  border-color: #212121;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  width: 80vh;
-  opacity: 0.2
+h3 {
+  margin: 50px 0;
 }
 
-#moreInfoButton{
+hr {
+  border-color: #212121;
+  margin: 100px auto;
+  width: 80vh;
+  opacity: 0.2;
+}
+
+#moreInfoButton {
   cursor: pointer;
-  i{
+
+  i {
     margin-top: 25px;
   }
+}
+
+.code {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  display: inline-block;
+
+  code {
+    padding: 25px;
+  }
+  text-align: left;
+}
+
+.spaced {
+  letter-spacing: 2px;
+}
+
+.sideByside{
+  display: inline-grid;
 }

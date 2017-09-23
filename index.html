@@ -6,6 +6,12 @@
   <title>tilted.js</title>
   <script src="https://use.fontawesome.com/982f9b7898.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./demo/styles/zenburn.css">
+  <script src="./demo/highlight.pack.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/tilted.js/dist/tilted.js"></script>
 </head>
 
 <body>
@@ -27,15 +33,44 @@
     <div class="prop">npm install tilted.js</div>
     <h3>or</h3>
     <h2>CDN</h2>
-    <div class="prop">https://cdn.jsdelivr.net/npm/tilted.js/dist/tilted.js</div>
+    <div class="prop">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/tilted.js/dist/tilted.js&quot;&gt;&lt;/script&gt;</div>
     <hr>
+    <h1>Instruction</h1>
+    <div>
+    <div class="sideByside">
+      <p>Add your &nbsp;<b class="spaced">HTML</b>&nbsp; element</p>
+      <pre class="code"><code class="html">&lt;div id='thisIsaID' &gt;this element will be tiled&lt;/div&gt;</code></pre>
+    </div>
+    <div class="sideByside">
+      <p>Add your &nbsp;<b class="spaced">CSS</b>&nbsp; element</p>
+      <pre class="code"><code class="css">#thisIsaID {
+        background-color: #212121;
+        border-radius: 10px;
+        padding: 50px;
+        display: inline-block;
+      }</code></pre>
+    </div>
+</div>
+    <br>
+    <p>Run the function &nbsp;<b class="spaced">tilted()</b>&nbsp; with the parameters of &nbsp;(<i><span class="spaced">id of element</span></i>, <i><span class="spaced">properties</span></i>)</p>
+
+    <pre class="code"><code class="js">tilted('thisIsaID', {
+      intensity: 15,
+      onHover: true,
+      disableX: false,
+      disableY: false,
+      invert: false
+    });</code></pre>
+    <h3 style="margin: 5px 0px">Code from above, in Action:</h2>
+    <div id='thisIsaID' style="background-color: #212121; border-radius: 10px; padding: 50px; display: inline-block">this element will be tiled</div>
+
     <div id="properties">
-    <h1>Properties</h1>
-    <div class="prop-noBack">intensity: controlles the intensity (default: 12)</div>
-    <div class="prop-noBack">onHover: controlles if tilt happens only on hover (default: false)</div>
-    <div class="prop-noBack">disableX: enables/disables tilt on the X axis (default: false)</div>
-    <div class="prop-noBack">disableY: controlles the intensity (default: false)</div>
-    <div class="prop-noBack">invert: tilt will be inverted (default: false)</div>
+      <h1>Properties</h1>
+      <div class="prop-noBack">intensity: controlles the intensity (default: 12)</div>
+      <div class="prop-noBack">onHover: controlles if tilt happens only on hover (default: false)</div>
+      <div class="prop-noBack">disableX: enables/disables tilt on the X axis (default: false)</div>
+      <div class="prop-noBack">disableY: controlles the intensity (default: false)</div>
+      <div class="prop-noBack">invert: tilt will be inverted (default: false)</div>
     </div>
   </div>
   <div id="footer">
@@ -43,13 +78,22 @@
       <a class="nostyle" href="https://github.com/PashanIrani/tilted.js">Download from Github: <i class="fa fa-github" aria-hidden="true"></i></a>
     </div>
   </div>
-  <script src="dist/tilted.js"></script>
+  <!--script src="dist/tilted.js"></script-->
   <script src="dist/main.js"></script>
   <script>
     tilted('header');
+
     tilted('fork', {
-      intesity: 40,
+      intensity: 10,
       onHover: true
+    });
+
+    tilted('thisIsaID', {
+      intensity: 15,
+      onHover: true,
+      disableX: false,
+      disableY: false,
+      invert: false
     });
   </script>
   <script>
