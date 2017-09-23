@@ -15,13 +15,13 @@ var calcTilt = function(event, el, intensity, disableX, disableY, invert) {
   var valX = disableY ? 0 : (posY / midpointY) * -amount;
   var valY = disableX ? 0 : (posX / midpointX) * amount;
 
-  //el.style.transform = 'perspective(550px) rotateY(' + valX + 'deg) rotateX(' + valY + 'deg)';
   return {
     x: valX,
     y: valY
   };
 };
 
+//titls to with animation
 function rotate(el, x, y, time, callback) {
   if (el == document) return;
   time = time ? time : 500;
@@ -36,15 +36,23 @@ function rotate(el, x, y, time, callback) {
 
 }
 
+//snaps to deg
 function tilt(el, x, y) {
   el.style.transform = 'perspective(550px) rotateX(' + x + 'deg) rotateY(' + y + 'deg)  ';
 }
 
 window.tilted = function(tag_id, params) {
 
+  /*
+  * 0: not in focus
+  * 1: animation
+  * 2: follow
+  */
   var state = 0;
 
-  var el = document.getElementById(tag_id);
+  var el = document.getElementById(tag_id); //getting element ready
+
+  // configuring params
   if (params) {
     var intensity = params.intensity;
     var disableX = params.disableX;
@@ -53,21 +61,22 @@ window.tilted = function(tag_id, params) {
     var onHover = params.onHover; //TODO: make onhover be smooth
   }
 
+  // determines what to place events on
   var obj = onHover ? el : document;
 
+  //adding listener :P
   obj.addEventListener('mouseenter', start);
   obj.addEventListener('mouseleave', leave);
-  obj.addEventListener('mousemove', follow, false);
+  obj.addEventListener('mousemove', follow);
 
   function start(event) {
     if (state == 0) {
       var degs = calcTilt(event, obj, intensity, disableX, disableY, invert);
       state = 1;
-      console.log(state);
+
       //rotate to deg on enter then follow
       rotate(el, degs.x, degs.y, 75, function() {
         state = 2;
-        console.log(state);
       });
     }
   }
@@ -82,10 +91,8 @@ window.tilted = function(tag_id, params) {
   function leave() {
     if (state == 2) {
       state = 1;
-      console.log(state);
       rotate(el, 0, 0, 200, function() {
         state = 0;
-        console.log('left: ' + state);
       });
     }
   }
