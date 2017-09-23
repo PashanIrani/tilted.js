@@ -8,28 +8,28 @@ $bgColor: #d45a5b;
 body,
 html {
   background-color: $bgColor;
+  font-family: 'Roboto', sans-serif;
 }
 
 #header {
-  width: 50vw;
   font-family: mainLogoFont;
-  margin: 40vh auto auto;
+  margin: auto;
   font-size: 50px;
   text-align: center;
   padding: 50px;
   background-color: rgba(255, 255, 255, 0.28);
+
   a {
     font-family: 'Roboto', sans-serif;
 
+    & > i {
+      transition: all 0.2s;
 
-  & > i {
-    transition: all .2s;
-
-    &:hover {
-      font-size: 60px;
+      &:hover {
+        font-size: 60px;
+      }
     }
   }
-}
 }
 
 a.nostyle {
@@ -50,4 +50,33 @@ a.nostyle {
   background-color: blue;
   opacity: 0.2;
   height: 100px;
+}
+
+.prop {
+  background-color: rgba(255, 255, 255, 0.28);
+  text-align: center;
+  font-size: 15px;
+  border-radius: 2px;
+  margin: auto;
+  width: 80vw;
+  padding: 20px;
+}
+
+#desc{
+  padding: 100px 10px;
+}
+
+#splash {
+  height: 100vh;
+  text-align: center;
+  padding-bottom: 50px;
+  .fa-chevron-circle-down {
+    font-size: 25px;
+  }
+}
+
+.centerView{
+    display: flex;
+    width: 100%;
+    height: 80vh;
 }
