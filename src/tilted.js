@@ -50,13 +50,20 @@ window.tilted = function(tag_id, params) {
 
   var el = document.getElementById(tag_id); //getting element ready
 
+  //defaults
+  var intensity = 12;
+  var disableX = false;
+  var disableY = false;
+  var invert = false;
+  var onHover = false;
+
   // configuring params
   if (params) {
-    var intensity = params.intensity;
-    var disableX = params.disableX;
-    var disableY = params.disableY;
-    var invert = params.invert;
-    var onHover = params.onHover; //TODO: make onhover be smooth
+    intensity = params.intensity ? params.intensity : intensity;
+    disableX = params.disableX ? params.disableX : disableX;
+    disableY = params.disableY ? params.disableY : disableY;
+    invert = params.invert ? params.invert : invert;
+    onHover = params.onHover ? params.onHover : onHover;
   }
 
   // determines what to place events on

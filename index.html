@@ -8,16 +8,18 @@
 </head>
 
 <body>
-  <div id="header">tilted.js
-    <div><a class="nostyle" href="https://github.com/PashanIrani/tilted.js">Download from Github: <i class="fa fa-github" aria-hidden="true"></i></a></div>
+  <div id="splash">
+    <div id="header">tilted.js
+      <div><a class="nostyle" href="https://github.com/PashanIrani/tilted.js">Download from Github: <i class="fa fa-github" aria-hidden="true"></i></a></div>
+    </div>
+  </div>
+  <div id="desc">
+    <div class="prop">intensity: controlles the intensity (defualt: 12)</div>
   </div>
   <script src="dist/tilted.js"></script>
   <script src="dist/main.js"></script>
   <script>
-    tilted('header', {
-      intensity: 25,
-      onHover: true
-    });
+    tilted('header');
   </script>
 </body>
 
