@@ -11,6 +11,7 @@ html {
   font-family: 'Roboto', sans-serif;
   color: white;
   margin: 0;
+  overflow-x: hidden;
 }
 
 #header {
@@ -38,7 +39,6 @@ html {
 #footer {
   text-align: center;
   background-color: #212121;
-  width: 100vw;
   left: 0;
   padding: 100px 0;
 
@@ -86,7 +86,6 @@ a.nostyle {
 
 #properties {
   background-color: #e8e8e8;
-  width: 100vw;
   padding: 50px 0 100px;
   color: #212121;
   margin-top: 50px;
@@ -164,6 +163,6 @@ hr {
   letter-spacing: 2px;
 }
 
-.sideByside{
+.sideByside {
   display: inline-grid;
 }
