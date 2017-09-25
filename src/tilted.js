@@ -67,10 +67,9 @@ window.tilted = function(tag_id, params) {
     onHover = params.onHover ? params.onHover : onHover;
   }
 
-  console.log(intensity);
   // determines what to place events on
   var obj = onHover ? el : document;
-  console.log(obj);
+
   //adding listener :P
   obj.addEventListener('mouseenter', start);
   obj.addEventListener('mouseleave', leave);
